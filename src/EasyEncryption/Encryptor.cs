@@ -3,10 +3,15 @@ using System.Text;
 
 namespace EasyEncryption;
 
-public sealed class Encryptor(string encryptionKey) : IEncryptor
+public sealed class Encryptor : IEncryptor
 {
-    private readonly string _key = encryptionKey;
-    
+    private readonly string _key;
+
+    public Encryptor(string key)
+    {
+        _key = key;
+    }
+
     /// <summary>
     /// Encrypt a text.
     /// </summary>
