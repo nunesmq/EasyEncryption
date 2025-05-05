@@ -1,2 +1,2 @@
 # EasyEncryption
-A library to easily encrypt/descrypt texts.
+A .NET library to easily encrypt/descrypt texts.
