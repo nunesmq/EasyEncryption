@@ -49,7 +49,7 @@ public class MyService
 }
 ```
 
-EasyEncryption can also be used in EF Core coversions
+EasyEncryption can also be used in EF Core conversions
 
 ```csharp
 internal sealed class MyEntityConfiguration : IEntityTypeConfiguration<MyEntity>
