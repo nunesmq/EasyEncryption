@@ -47,3 +47,25 @@ public class MyService
         var decryptedText = await _encryptor.DecryptAsync(encryptedText);
     }
 }
+```
+
+EasyEncryption can also be used in EF Core coversions
+
+```csharp
+internal sealed class MyEntityConfiguration : IEntityTypeConfiguration<MyEntity>
+{
+    public void Configure(EntityTypeBuilder<MyEntity> builder)
+    {
+        //This code won't throw an exception even if the property or values in the
+        //database are null, because the Encrypt/Decrypt method accept null params
+        //and can return null values
+        builder
+            .Property(x => x.SecretProperty)
+            .HasConversion(
+                x => Encryptor.Encrypt(x, "MySecretKey"),
+                x => Encryptor.Decrypt(x, "MySecretKey"))
+            .HasColumnName("SecretProperty")
+            .HasMaxLength(256);
+    }
+}
+```
