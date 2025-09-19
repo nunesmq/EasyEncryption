@@ -1,4 +1,5 @@
-﻿using System.Security.Cryptography;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace EasyEncryption;
@@ -17,6 +18,7 @@ public sealed class Encryptor : IEncryptor
     /// </summary>
     /// <param name="text">The text to encrypt.</param>
     /// <returns>The encrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public string? Encrypt(string? text)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -42,6 +44,7 @@ public sealed class Encryptor : IEncryptor
     /// </summary>
     /// <param name="text">The text to decrypt.</param>
     /// <returns>The decrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public string? Decrypt(string? text)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -58,12 +61,13 @@ public sealed class Encryptor : IEncryptor
 
         return streamReader.ReadToEnd();
     }
-    
+
     /// <summary>
     /// Encrypt a text.
     /// </summary>
     /// <param name="text">The text to encrypt.</param>
     /// <returns>The encrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public async Task<string?> EncryptAsync(string? text)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -89,6 +93,7 @@ public sealed class Encryptor : IEncryptor
     /// </summary>
     /// <param name="text">The text to decrypt.</param>
     /// <returns>The decrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public async Task<string?> DecryptAsync(string? text)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -105,13 +110,14 @@ public sealed class Encryptor : IEncryptor
 
         return await streamReader.ReadToEndAsync();
     }
-    
+
     /// <summary>
     /// Encrypt a text.
     /// </summary>
     /// <param name="text">The text to encrypt.</param>
     /// <param name="key">The encryption key.</param>
     /// <returns>The encrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public static string? Encrypt(string? text, string key)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -135,6 +141,7 @@ public sealed class Encryptor : IEncryptor
     /// <param name="text">The text to decrypt.</param>
     /// <param name="key">The encryption key.</param>
     /// <returns>The decrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public static string? Decrypt(string? text, string key)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -151,13 +158,14 @@ public sealed class Encryptor : IEncryptor
 
         return streamReader.ReadToEnd();
     }
-    
+
     /// <summary>
     /// Encrypt a text.
     /// </summary>
     /// <param name="text">The text to encrypt.</param>
     /// <param name="key">The encryption key.</param>
     /// <returns>The encrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public static async Task<string?> EncryptAsync(string? text, string key)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
@@ -184,6 +192,7 @@ public sealed class Encryptor : IEncryptor
     /// <param name="text">The text to decrypt.</param>
     /// <param name="key">The encryption key.</param>
     /// <returns>The decrypted text.</returns>
+    [return: NotNullIfNotNull(nameof(text))]
     public static async Task<string?> DecryptAsync(string? text, string key)
     {
         if (string.IsNullOrWhiteSpace(text)) return text;
